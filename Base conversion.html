@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RID Base Conversion</title>
+    <style>
+        /* Reset some default styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        /* Main Container */
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            background: #290246;
+            color:black;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(72, 16, 16, 0.1);
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .container:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+        }
+
+        /* Title */
+        h1 {
+            color: #333;
+            font-size: 30px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        /* Label Styling */
+        label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #f5efef;
+            font-weight: 500;
+        }
+
+        /* Input Fields */
+        input[type="text"], select {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background: #f4f7fb;
+            color: #02a34d;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus, select:focus {
+            border-color: #0072ff;
+            background: #0f0f0f;
+            color: #ccc;
+        }
+
+        /* Button Styling */
+        button {
+            background: #0072ff;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #005bb5;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            background: #003f87;
+        }
+
+        /* Result Field */
+        #res {
+            background: #f4f7fb;
+            color: #333;
+            font-weight: bold;
+            padding: 12px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            text-align: center;
+            cursor: not-allowed;
+        }
+
+        /* Input focus styling */
+        input, select {
+            outline: none;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+                color:black;
+            }
+
+            input[type="text"], select, button {
+                font-size: 14px;
+                color:black;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h1 style="background-color:black; color: green;"><marquee>Developed by Pammy</marquee></h1>
+        <h1 style="color: white;">Base Conversion App</h1>
+        <label for="d1">Number</label>
+        <input id="d1" type="text" placeholder="Enter your number">
+
+        <label for="from">From</label>
+        <select id="from">
+            <option value="d">Decimal Number</option>
+            <option value="b">Binary Number</option>
+            <option value="o">Octal Number</option>
+            <option value="h">Hexadecimal Number</option>
+        </select>
+
+        <label for="to">To</label>
+        <select id="to">
+            <option value="d">Decimal Number</option>
+            <option value="b">Binary Number</option>
+            <option value="o">Octal Number</option>
+            <option value="h">Hexadecimal Number</option>
+        </select>
+
+        <button type="button" onclick="con()">Convert</button>
+
+        <br><br>
+        <label for="res">Result</label>
+        <input id="res" type="text" readonly>
+    </div>
+
+    <script>
+        function con(){
+            let num=document.getElementById("d1").value.trim() //trim()function is used to remove space
+            let frominput=document.getElementById("from").value
+            let toinput=document.getElementById("to").value
+
+            // console.log(num)
+            // console.log(frominput)
+            // console.log(toinput)
+            
+            let res=""
+        //convert input into decimal
+            let dec_num
+            
+            if(frominput==="b"){
+                dec_num=parseInt(num,2)
+
+            }
+            // document.write(dec_num)
+            else if(frominput==="o"){
+                dec_num=parseInt(num,8)
+            }
+            //document.write(dec_num)
+            else if(frominput==="h"){
+                dec_num=parseInt(num,16)
+            }
+             //document.write(dec_num)
+             else if(frominput=="d"){
+                dec_num=parseInt(num,10)
+             }
+             // document.write(dec_num)
+
+
+
+             //convert decimal to any target number
+             //toString() convert decimal into target number
+
+             if(toinput==="d"){
+                res=dec_num.toString(10)
+             }
+            // console.log(res)
+            else if(toinput==="b"){
+                res=dec_num.toString(2)
+            }
+            else if(toinput==="o"){
+                res=dec_num.toString(8)
+            }
+            else if(toinput==="h"){
+                res=dec_num.toString(16)
+            }
+           //display the result
+            document.getElementById("res").value=res
+        }
+    </script>
+</body>
+</html>
